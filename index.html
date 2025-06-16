@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PhotoCraft Studio</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+ <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+     .overlay {
+      background: linear-gradient(to right, rgba(0,0,0,0.5) 40%, rgba(0,0,0,0));
+    }
+      .zoom-hover {
+      transition: transform 0.5s ease;
+    }
+    .zoom-hover:hover {
+      transform: scale(1.1);
+    }   
+    .img-block-animate, .hero-img {
+      opacity: 0;
+      transform: scale(0.8);
+      transition: opacity 1s ease, transform 1s ease;
+    }
+    .img-loaded {
+      opacity: 1;
+      transform: scale(1);
+    }
+    .hero-img-text {
+      position: absolute;
+      bottom: 5%;
+      left: 5%;
+      background: rgba(0, 0, 0, 0.6);
+      padding: 1rem;
+      border-radius: 0.5rem;
+      color: #fff;
+      font-size: 1.25rem;
+      max-width: 90%;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+    }
+     .contact-overlay {
+      position: absolute;
+      top: 1.25rem;
+      left: 1.25rem;
+      background: rgba(0, 0, 0, 0.6);
+      padding: 0.5rem 1rem;
+      border-radius: 0.5rem;
+      color: #fff;
+      font-size: 0.875rem;
+      z-index: 50;
+    }
+  </style>
+</head>
+
+<body class="bg-gray-50 text-gray-800">
+ 
+
+  <!-- Navbar -->
+  <header class="fixed w-full z-50 bg-white shadow">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between h-16 items-center">
+        <div class="text-xl font-extrabold text-purple-700">PhotoCraft</div>
+        <nav class="hidden md:flex space-x-8 text-sm font-semibold">
+          <a href="#home" class="hover:text-purple-700">Home</a>
+          <a href="#services" class="hover:text-purple-700">Services</a>
+          <a href="#gallery" class="hover:text-purple-700">Gallery</a>
+          <a href="#reviews" class="hover:text-purple-700">Reviews</a>
+          <a href="#contact" class="hover:text-purple-700">Contact Us</a>
+        </nav>
+        <div class="md:hidden">
+          <button id="menu-toggle" class="text-gray-700 focus:outline-none">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div id="mobile-menu" class="md:hidden hidden px-4 pb-4">
+      <a href="#home" class="block py-2 text-sm font-semibold hover:text-purple-700">Home</a>
+      <a href="#services" class="block py-2 text-sm font-semibold hover:text-purple-700">Services</a>
+      <a href="#gallery" class="block py-2 text-sm font-semibold hover:text-purple-700">Gallery</a>
+      <a href="#contact" class="block py-2 text-sm font-semibold hover:text-purple-700">Contact Us</a>
+    </div>
+  </header>
+
+  <script>
+    const toggleBtn = document.getElementById('menu-toggle');
+    const mobileMenu = document.getElementById('mobile-menu');
+    toggleBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+  </script>
+
+ 
+
+   <!-- Hero Section Full Width with Block Animation -->
+  <section id="home" class="w-full h-screen relative overflow-hidden">
+    <div class="swiper myHeroSwiper w-full h-full">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide relative">
+          <img src="https://images.pexels.com/photos/733872/pexels-photo-733872.jpeg" class="hero-img w-full h-full object-cover" />
+          <div class="hero-img-text">
+            📞 +91-9876543210 | ✉️ info@photocraftstudio.com <br />
+            <span class="block mt-2">Explore the art of timeless photography</span>
+          </div>
+        </div>
+        <div class="swiper-slide relative">
+          <img src="https://images.pexels.com/photos/1704120/pexels-photo-1704120.jpeg" class="hero-img w-full h-full object-cover" />
+          <div class="hero-img-text">
+            📞 +91-9876543210 | ✉️ info@photocraftstudio.com <br />
+            <span class="block mt-2">We capture memories that matter</span>
+          </div>
+        </div>
+        <div class="swiper-slide relative">
+          <img src="https://images.pexels.com/photos/1680172/pexels-photo-1680172.jpeg" class="hero-img w-full h-full object-cover" />
+          <div class="hero-img-text">
+            📞 +91-9876543210 | ✉️ info@photocraftstudio.com <br />
+            <span class="block mt-2">Professional shoots, artistic touch</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    new Swiper(".myHeroSwiper", {
+      loop: true,
+      autoplay: { delay: 7000, disableOnInteraction: false },
+      effect: 'fade',
+    });
+
+    document.querySelectorAll('.hero-img').forEach((img) => {
+      img.onload = () => {
+        img.classList.add('img-loaded');
+      };
+    });
+  </script>
+
+
+  <!-- Services Section -->
+  <section id="services" class="py-24 bg-white">
+    <div class="max-w-7xl mx-auto px-6">
+      <h2 class="text-4xl font-bold text-center mb-16">What We Offer</h2>
+      <div class="grid md:grid-cols-3 gap-10">
+        <div class="bg-gray-100 p-6 rounded-xl text-center shadow-md hover:shadow-lg transition transform hover:-translate-y-1">
+          <img src="https://cdn-icons-png.flaticon.com/512/2920/2920071.png" alt="Photography" class="h-20 mx-auto mb-4">
+          <h3 class="text-xl font-bold mb-2">Professional Photography</h3>
+          <p class="text-gray-600">Portraits, events, and commercial imagery tailored for impact.</p>
+        </div>
+        <div class="bg-gray-100 p-6 rounded-xl text-center shadow-md hover:shadow-lg transition transform hover:-translate-y-1">
+          <img src="https://cdn-icons-png.flaticon.com/512/2920/2920031.png" alt="Videography" class="h-20 mx-auto mb-4">
+          <h3 class="text-xl font-bold mb-2">Cinematic Videography</h3>
+          <p class="text-gray-600">Short films, product reels, interviews, and cinematic storytelling.</p>
+        </div>
+        <div class="bg-gray-100 p-6 rounded-xl text-center shadow-md hover:shadow-lg transition transform hover:-translate-y-1">
+          <img src="https://cdn-icons-png.flaticon.com/512/892/892781.png" alt="Editing" class="h-20 mx-auto mb-4">
+          <h3 class="text-xl font-bold mb-2">Editing & Retouching</h3>
+          <p class="text-gray-600">High-end post production, color grading, and creative retouching.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+ <!-- Animated Gallery Section -->
+  <section id="gallery" class="py-16 bg-gray-100">
+    <div class="max-w-7xl mx-auto px-4">
+      <h2 class="text-3xl font-bold text-center mb-10">Our Animated Gallery</h2>
+      <div class="swiper myGallerySwiper">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide"><img src="https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg" class="zoom-hover w-full h-96 object-cover rounded-xl shadow-md" /></div>
+          <div class="swiper-slide"><img src="https://images.pexels.com/photos/1043474/pexels-photo-1043474.jpeg" class="zoom-hover w-full h-96 object-cover rounded-xl shadow-md" /></div>
+          <div class="swiper-slide"><img src="https://images.pexels.com/photos/1525041/pexels-photo-1525041.jpeg" class="zoom-hover w-full h-96 object-cover rounded-xl shadow-md" /></div>
+          <div class="swiper-slide"><img src="https://images.pexels.com/photos/428364/pexels-photo-428364.jpeg" class="zoom-hover w-full h-96 object-cover rounded-xl shadow-md" /></div>
+          <div class="swiper-slide"><img src="https://images.pexels.com/photos/733872/pexels-photo-733872.jpeg" class="zoom-hover w-full h-96 object-cover rounded-xl shadow-md" /></div>
+          <div class="swiper-slide"><img src="https://images.pexels.com/photos/1525041/pexels-photo-1525041.jpeg" class="zoom-hover w-full h-96 object-cover rounded-xl shadow-md" /></div>
+        </div>
+        <div class="swiper-pagination mt-4"></div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    new Swiper(".myGallerySwiper", {
+      loop: true,
+      slidesPerView: 1,
+      spaceBetween: 20,
+      autoplay: {
+        delay: 3000,
+        disableOnInteraction: false
+      },
+      pagination: {
+        el: ".swiper-pagination",
+        clickable: true,
+      },
+      breakpoints: {
+        640: { slidesPerView: 2 },
+        1024: { slidesPerView: 3 },
+      }
+    });
+  </script>
+
+
+ <!-- Reviews Section -->
+  <section id="reviews" class="py-24 bg-white">
+    <div class="max-w-6xl mx-auto px-6 text-center">
+      <h2 class="text-4xl font-bold mb-12">Client Testimonials</h2>
+      <div class="swiper reviewSwiper">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide flex flex-col items-center text-center space-y-4">
+            <img src="https://randomuser.me/api/portraits/women/44.jpg" class="w-24 h-24 rounded-full shadow-lg" alt="Client 1">
+            <p class="text-lg italic">“Absolutely stunning photography! Every detail was perfect.”</p>
+            <h4 class="font-bold text-purple-700">— Ananya Roy</h4>
+          </div>
+          <div class="swiper-slide flex flex-col items-center text-center space-y-4">
+            <img src="https://randomuser.me/api/portraits/men/45.jpg" class="w-24 h-24 rounded-full shadow-lg" alt="Client 2">
+            <p class="text-lg italic">“They captured our moments with so much emotion. Truly recommended.”</p>
+            <h4 class="font-bold text-purple-700">— Soham Das</h4>
+          </div>
+          <div class="swiper-slide flex flex-col items-center text-center space-y-4">
+            <img src="https://randomuser.me/api/portraits/women/22.jpg" class="w-24 h-24 rounded-full shadow-lg" alt="Client 3">
+            <p class="text-lg italic">“A premium experience with such a friendly team.”</p>
+            <h4 class="font-bold text-purple-700">— Priyanka Saha</h4>
+          </div>
+          <div class="swiper-slide flex flex-col items-center text-center space-y-4">
+            <img src="https://randomuser.me/api/portraits/men/33.jpg" class="w-24 h-24 rounded-full shadow-lg" alt="Client 4">
+            <p class="text-lg italic">“Highly professional. We got our video portfolio in just 3 days.”</p>
+            <h4 class="font-bold text-purple-700">— Rakesh Barman</h4>
+          </div>
+          <div class="swiper-slide flex flex-col items-center text-center space-y-4">
+            <img src="https://randomuser.me/api/portraits/women/65.jpg" class="w-24 h-24 rounded-full shadow-lg" alt="Client 5">
+            <p class="text-lg italic">“From lighting to angles, everything was cinematic!”</p>
+            <h4 class="font-bold text-purple-700">— Sneha Paul</h4>
+          </div>
+        </div>
+      </div>
+    </div>
+    <style>
+      .reviewSwiper .swiper-slide {
+        transition: all 0.5s ease-in-out;
+        transform: scale(0.9);
+        opacity: 0.5;
+      }
+      .reviewSwiper .swiper-slide.swiper-slide-active {
+        transform: scale(1);
+        opacity: 1;
+      }
+    </style>
+    <script>
+      new Swiper(".reviewSwiper", {
+        loop: true,
+        autoplay: {
+          delay: 4000,
+          disableOnInteraction: false,
+        },
+        effect: 'slide',
+        centeredSlides: true,
+        slidesPerView: 1,
+      });
+    </script>
+  </section>
+
+ <!-- Contact Us Section Redesigned -->
+  <section id="contact" class="py-16 bg-white">
+    <div class="max-w-5xl mx-auto px-4">
+      <h2 class="text-3xl font-bold text-center mb-10">Contact Us</h2>
+      <div class="grid md:grid-cols-2 gap-8">
+        <div>
+          <h3 class="text-xl font-semibold mb-4">Get in Touch</h3>
+          <p class="mb-4">We would love to hear from you. Feel free to reach out for bookings or inquiries.</p>
+          <ul class="space-y-3">
+            <li><i class="fas fa-phone-alt text-blue-600 mr-2"></i> +91-9876543210</li>
+            <li><i class="fas fa-envelope text-blue-600 mr-2"></i> info@photocraftstudio.com</li>
+            <li><i class="fas fa-map-marker-alt text-blue-600 mr-2"></i> 123 Studio Lane, Kolkata, West Bengal, India</li>
+            <li><i class="fab fa-instagram text-pink-500 mr-2"></i> <a href="https://instagram.com/photocraftstudio" target="_blank">@photocraftstudio</a></li>
+            <li><i class="fab fa-facebook text-blue-700 mr-2"></i> <a href="https://facebook.com/photocraftstudio" target="_blank">/photocraftstudio</a></li>
+          </ul>
+        </div>
+        <div>
+          <form class="space-y-4">
+            <input type="text" placeholder="Your Name" class="w-full border border-gray-300 rounded-lg px-4 py-2" required />
+            <input type="email" placeholder="Your Email" class="w-full border border-gray-300 rounded-lg px-4 py-2" required />
+            <textarea placeholder="Your Message" class="w-full border border-gray-300 rounded-lg px-4 py-2 h-32" required></textarea>
+            <button type="submit" class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700">Send Message</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Floating Social Icons on Mobile -->
+  <div class="md:hidden social-float flex justify-center space-x-6 text-2xl">
+    <a href="https://www.youtube.com" target="_blank" class="text-red-600 hover:text-red-800"><i class="fab fa-youtube"></i></a>
+    <a href="https://www.facebook.com" target="_blank" class="text-blue-600 hover:text-blue-800"><i class="fab fa-facebook"></i></a>
+    <a href="https://www.instagram.com" target="_blank" class="text-pink-500 hover:text-pink-700"><i class="fab fa-instagram"></i></a>
+    <a href="https://wa.me/919876543210" target="_blank" class="text-green-500 hover:text-green-700"><i class="fab fa-whatsapp"></i></a>
+  </div>
+
+  <script>
+    document.querySelectorAll('.img-block-animate').forEach((img) => {
+      img.onload = () => {
+        img.classList.add('img-loaded');
+      };
+    });
+  </script>
+</body>
+
+</html>
